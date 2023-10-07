@@ -1,0 +1,45 @@
+package main
+
+import "fmt"
+
+type Product interface {
+	Create() string
+}
+
+type ConcreteProductA struct{}
+
+func (c *ConcreteProductA) Create() string {
+	return "Product A"
+}
+
+type ConcreteProductB struct{}
+
+func (c *ConcreteProductB) Create() string {
+	return "Product B"
+}
+
+type Factory interface {
+	FactoryMethod() Product
+}
+
+type ConcreteFactoryA struct{}
+
+func (c *ConcreteFactoryA) FactoryMethod() Product {
+	return &ConcreteProductA{}
+}
+
+type ConcreteFactoryB struct{}
+
+func (c *ConcreteFactoryB) FactoryMethod() Product {
+	return &ConcreteProductB{}
+}
+
+func main() {
+	factoryA := &ConcreteFactoryA{}
+	productA := factoryA.FactoryMethod()
+	fmt.Println(productA.Create()) // Output: "Product A"
+
+	factoryB := &ConcreteFactoryB{}
+	productB := factoryB.FactoryMethod()
+	fmt.Println(productB.Create()) // Output: "Product B"
+}
