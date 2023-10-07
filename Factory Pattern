@@ -37,9 +37,9 @@ func (c *ConcreteFactoryB) FactoryMethod() Product {
 func main() {
 	factoryA := &ConcreteFactoryA{}
 	productA := factoryA.FactoryMethod()
-	fmt.Println(productA.Create()) // Output: "Product A"
+	fmt.Println(productA.Create()) 
 
 	factoryB := &ConcreteFactoryB{}
 	productB := factoryB.FactoryMethod()
-	fmt.Println(productB.Create()) // Output: "Product B"
+	fmt.Println(productB.Create()) 
 }
