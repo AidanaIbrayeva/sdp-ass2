@@ -1,0 +1,29 @@
+package main
+
+import "fmt"
+
+type Coffee interface {
+	Cost() int
+}
+
+type SimpleCoffee struct{}
+
+func (s *SimpleCoffee) Cost() int {
+	return 5
+}
+
+type MilkDecorator struct {
+	Coffee Coffee
+}
+
+func (m *MilkDecorator) Cost() int {
+	return m.Coffee.Cost() + 2
+}
+
+func main() {
+	coffee := &SimpleCoffee{}
+	fmt.Println("Cost of coffee:", coffee.Cost())
+
+	milkCoffee := &MilkDecorator{Coffee: coffee}
+	fmt.Println("Cost of milk coffee:", milkCoffee.Cost())
+}
